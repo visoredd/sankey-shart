@@ -5,12 +5,10 @@ import App from './App';
 import { SankeyChart } from './SankeyChart';
 import type { RootState } from './store/store';
 
-// Mocking the SankeyChart component to focus on the App component
 vi.mock('./SankeyChart', () => ({
-  SankeyChart: vi.fn(() => null), // We only need to check if it's called with the right props
+  SankeyChart: vi.fn(() => null),
 }));
 
-// Sample initial state to mock the Redux store
 const mockState: RootState = {
   chartSlice: {
     data: [
@@ -33,7 +31,6 @@ describe('App component', () => {
       </Provider>
     );
 
-    // Ensure that SankeyChart is rendered with the correct data and options
     expect(SankeyChart).toHaveBeenCalledWith(
       expect.objectContaining({
         data: mockState.chartSlice.data,
